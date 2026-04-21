@@ -1,1 +1,31 @@
-<p>Users works!</p>
+<div class="container">
+  <h1>Users Page</h1>
+
+  @for(user of users; track user.id) {
+    <nile-card class="user-card">
+      <div slot="header">
+        <h3>{{ user.name }}</h3>
+      </div>
+
+      <div>
+        <nile-button
+          variant="secondary"
+          size="sm"
+          (click)="toggleDetails(user.id)">
+          {{ expandedUsers[user.id] ? 'Hide Details' : 'Show Details' }}
+        </nile-button>
+
+        @if(expandedUsers[user.id]) {
+          <div class="user-details">
+            <nile-tag>ID: {{ user.id }}</nile-tag>
+            <p>{{ user.email }}</p>
+          </div>
+        }
+      </div>
+    </nile-card>
+  }
+
+  <nile-button variant="primary" (click)="getTasks()">
+    Show Tasks
+  </nile-button>
+</div>

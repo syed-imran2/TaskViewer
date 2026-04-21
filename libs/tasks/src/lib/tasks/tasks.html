@@ -1,1 +1,13 @@
-<p>Tasks works!</p>
+<div class="container">
+  <h1>Tasks Page</h1>
+    @for(task of tasks; track task.id){
+      <nile-card>
+      <div class="user-section">
+        <h2>{{task.name}}</h2>
+        @for(t of task.title; track t){
+          <div class="card">{{t}}</div>
+        }
+      </div>
+      </nile-card>
+    } 
+</div>
