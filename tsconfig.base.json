@@ -13,11 +13,11 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-
+    "baseUrl": ".",
     "paths": {
-      "@my-workspace/users": ["./libs/users/src/index.ts"],
-      "@my-workspace/tasks": ["./libs/tasks/src/index.ts"],
-      "@my-workspace/shared-ui": ["./libs/shared-ui/src/index.ts"]
+      "@my-workspace/shared-ui": ["./libs/shared-ui/src/index.ts"],
+      "usersApp/Routes": ["apps/usersApp/src/app/remote-entry/entry.routes.ts"],
+      "tasksApp/Routes": ["apps/tasksApp/src/app/remote-entry/entry.routes.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

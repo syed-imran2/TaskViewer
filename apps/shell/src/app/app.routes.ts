@@ -3,12 +3,10 @@ import { Route } from '@angular/router';
 export const appRoutes: Route[] = [
   {
     path: 'tasks',
-    loadChildren: () =>
-      import('@my-workspace/tasks').then((m) => m.tasksRoutes),
+    loadChildren: () => import('tasksApp/Routes').then((m) => m!.remoteRoutes),
   },
   {
     path: 'users',
-    loadChildren: () =>
-      import('@my-workspace/users').then((m) => m.usersRoutes),
+    loadChildren: () => import('usersApp/Routes').then((m) => m!.remoteRoutes),
   },
 ];

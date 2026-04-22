@@ -12,5 +12,6 @@
     "jest.config.ts",
     "jest.config.cts",
     "src/test-setup.ts"
-  ]
+  ],
+  "files": ["src/app/remote-entry/entry.routes.ts"]
 }

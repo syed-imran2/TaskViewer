@@ -1,29 +1,29 @@
 {
-  "name": "shell",
+  "name": "usersApp",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/shell/src",
+  "sourceRoot": "apps/usersApp/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/shell",
-        "index": "apps/shell/src/index.html",
-        "main": "apps/shell/src/main.ts",
-        "tsConfig": "apps/shell/tsconfig.app.json",
+        "outputPath": "dist/apps/usersApp",
+        "index": "apps/usersApp/src/index.html",
+        "main": "apps/usersApp/src/main.ts",
+        "tsConfig": "apps/usersApp/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/shell/public"
+            "input": "apps/usersApp/public"
           }
         ],
-        "styles": ["apps/shell/src/styles.scss"],
+        "styles": ["apps/usersApp/src/styles.scss"],
         "customWebpackConfig": {
-          "path": "apps/shell/webpack.config.ts"
+          "path": "apps/usersApp/webpack.config.ts"
         }
       },
       "configurations": {
@@ -42,7 +42,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "apps/shell/webpack.prod.config.ts"
+            "path": "apps/usersApp/webpack.prod.config.ts"
           }
         },
         "development": {
@@ -58,24 +58,25 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@nx/angular:module-federation-dev-server",
+      "executor": "@nx/angular:dev-server",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      },
       "configurations": {
         "production": {
-          "buildTarget": "shell:build:production"
+          "buildTarget": "usersApp:build:production"
         },
         "development": {
-          "buildTarget": "shell:build:development"
+          "buildTarget": "usersApp:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "publicHost": "http://localhost:4200"
-      }
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "shell:build"
+        "buildTarget": "usersApp:build"
       }
     },
     "lint": {
@@ -85,17 +86,26 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/shell/jest.config.cts",
-        "tsConfig": "apps/shell/tsconfig.spec.json"
+        "jestConfig": "apps/usersApp/jest.config.cts",
+        "tsConfig": "apps/usersApp/tsconfig.spec.json"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "shell:build",
-        "port": 4200,
-        "spa": true
+        "buildTarget": "usersApp:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "usersApp:build:development"
+        },
+        "production": {
+          "buildTarget": "usersApp:build:production"
+        }
       }
     }
   }
